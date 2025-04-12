@@ -1,306 +1,26 @@
-﻿using System;
+﻿using lab2.Enums;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using lab2.Types;
+using System.Text.Json.Serialization;
 
-namespace RedemptionRPG
+namespace lab2
 {
-    // Item class
-    public class Item
-    {
-        public string Name { get; set; }
-        public Dictionary<string, int> Stats { get; set; }
-        public int Price { get; set; }
-
-        public Item(string name, Dictionary<string, int> stats, int price)
-        {
-            Name = name;
-            Stats = stats;
-            Price = price;
-        }
-    }
-
-    // Weapon class (inherits from Item)
-    public class Weapon : Item
-    {
-        public int Damage => Stats.ContainsKey("DMG") ? Stats["DMG"] : 0;
-
-        public Weapon(string name, Dictionary<string, int> stats, int price)
-            : base(name, stats, price)
-        {
-        }
-    }
-
-    // Enemy class
-    public class Enemy
-    {
-        public int HP { get; set; }
-        public int Armor { get; set; }
-        public int DMG { get; set; }
-        public int LVL_to_sk { get; set; }
-        public int Experience { get; set; }
-        public int Gold { get; set; }
-        public string Name { get; set; }
-
-        public Enemy(string name, int hp, int armor, int dmg, int lvl_to_sk, int experience, int gold)
-        {
-            Name = name;
-            HP = hp;
-            Armor = armor;
-            DMG = dmg;
-            LVL_to_sk = lvl_to_sk;
-            Experience = experience;
-            Gold = gold;
-        }
-    }
-
-    // Slime class (inherits from Enemy)
-    public class Slime : Enemy
-    {
-        public Slime() : base("Slime", 5, 0, 2, 1, 5, 2) { }
-    }
-
-    // Guard class (inherits from Enemy)
-    public class Guard : Enemy
-    {
-        public Guard() : base("Guard", 50, 5, 10, 5, 20, 15) { }
-    }
-
-    // StoryProgress class
-    public class StoryProgress
-    {
-        public Enemy CurrentEnemy { get; set; }
-        public List<Enemy> CompletedEnemies { get; set; }
-
-        public StoryProgress()
-        {
-            CompletedEnemies = new List<Enemy>();
-            // Initial story enemy
-            CurrentEnemy = new Enemy("Dan 'Axe' Radley", 30, 3, 8, 3, 15, 10);
-        }
-
-        public void AdvanceStory(Player player)
-        {
-            CompletedEnemies.Add(CurrentEnemy);
-            if (CompletedEnemies.Count == 1)
-            {
-                CurrentEnemy = new Enemy("Garret 'Claw' Veil", 100, 10, 20, 10, 50, 50); // Final boss
-            }
-            else
-            {
-                Console.WriteLine("You have defeated the final boss! Choose your ending:");
-                Console.WriteLine("1. Rule the land with an iron fist");
-                Console.WriteLine("2. Bring peace to the realm");
-                string choice = Console.ReadLine();
-                Console.WriteLine($"Game Over! You chose to {(choice == "1" ? "rule with an iron fist" : "bring peace")}.");
-                Environment.Exit(0);
-            }
-        }
-    }
-
-    // Player class
-    public class Player
-    {
-        public int HP { get; set; }
-        public int MaxHP { get; set; }
-        public int Armor { get; set; }
-        public int DMG { get; set; }
-        public int Level { get; set; }
-        public int Experience { get; set; }
-        public int Gold { get; set; }
-        public int Strength { get; set; }
-        public int Stealth { get; set; }
-        public int Agility { get; set; }
-        public int Charisma { get; set; }
-        public Item Head { get; set; }
-        public Item Torso { get; set; }
-        public Item Legs { get; set; }
-        public Item Boots { get; set; }
-        public Weapon FirstWeapon { get; set; }
-        public Weapon SecondWeapon { get; set; }
-        public List<Item> Inventory { get; set; }
-
-        public Player()
-        {
-            HP = 20;
-            MaxHP = 20;
-            Armor = 0;
-            DMG = 5;
-            Level = 1;
-            Experience = 0;
-            Gold = 50;
-            Strength = 5;
-            Stealth = 5;
-            Agility = 5;
-            Charisma = 5;
-            Inventory = new List<Item>();
-        }
-
-        public void BuyItem(Item item)
-        {
-            int discountedPrice = item.Price - (Charisma / 2); // Discount based on Charisma
-            if (Gold >= discountedPrice)
-            {
-                Gold -= discountedPrice;
-                Inventory.Add(item);
-                Console.WriteLine($"Bought {item.Name} for {discountedPrice} gold!");
-            }
-            else
-            {
-                Console.WriteLine("Not enough gold!");
-            }
-        }
-
-        public void UpgradeStats()
-        {
-            if (Experience < Level * 10)
-            {
-                Console.WriteLine("Not enough experience to level up!");
-                return;
-            }
-
-            Experience -= Level * 10;
-            Level++;
-            Console.WriteLine($"Level up! You are now level {Level}. Choose a stat to upgrade:");
-            Console.WriteLine("1. Strength");
-            Console.WriteLine("2. Stealth");
-            Console.WriteLine("3. Agility");
-            Console.WriteLine("4. Charisma");
-            string choice = Console.ReadLine();
-
-            switch (choice)
-            {
-                case "1":
-                    Strength++;
-                    MaxHP += 5;
-                    HP = MaxHP;
-                    Console.WriteLine("Strength increased!");
-                    break;
-                case "2":
-                    Stealth++;
-                    Console.WriteLine("Stealth increased!");
-                    break;
-                case "3":
-                    Agility++;
-                    DMG += 2;
-                    Console.WriteLine("Agility increased!");
-                    break;
-                case "4":
-                    Charisma++;
-                    Console.WriteLine("Charisma increased!");
-                    break;
-                default:
-                    Console.WriteLine("Invalid choice.");
-                    break;
-            }
-        }
-
-        public void ViewInventory()
-        {
-            Console.WriteLine("Equipped Items:");
-            Console.WriteLine($"Head: {(Head != null ? Head.Name : "None")}");
-            Console.WriteLine($"Torso: {(Torso != null ? Torso.Name : "None")}");
-            Console.WriteLine($"Legs: {(Legs != null ? Legs.Name : "None")}");
-            Console.WriteLine($"Boots: {(Boots != null ? Boots.Name : "None")}");
-            Console.WriteLine($"First Weapon: {(FirstWeapon != null ? FirstWeapon.Name : "None")}");
-            Console.WriteLine($"Second Weapon: {(SecondWeapon != null ? SecondWeapon.Name : "None")}");
-            Console.WriteLine("\nInventory:");
-            for (int i = 0; i < Inventory.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}. {Inventory[i].Name}");
-            }
-
-            Console.WriteLine("Enter the number of the item to equip (or 0 to exit):");
-            string input = Console.ReadLine();
-            if (input == "0") return;
-
-            int index = int.Parse(input) - 1;
-            if (index >= 0 && index < Inventory.Count)
-            {
-                Item item = Inventory[index];
-                EquipItem(item);
-            }
-        }
-
-        private void EquipItem(Item item)
-        {
-            if (item.Name.Contains("Head"))
-            {
-                Head = item;
-                UpdateStats(item, "HP", "Armor");
-            }
-            else if (item.Name.Contains("Torso"))
-            {
-                Torso = item;
-                UpdateStats(item, "HP", "Armor");
-            }
-            else if (item.Name.Contains("Legs"))
-            {
-                Legs = item;
-                UpdateStats(item, "HP", "Armor");
-            }
-            else if (item.Name.Contains("Boots"))
-            {
-                Boots = item;
-                UpdateStats(item, "HP", "Armor");
-            }
-            else if (item is Weapon weapon)
-            {
-                if (FirstWeapon == null)
-                {
-                    FirstWeapon = weapon;
-                }
-                else
-                {
-                    SecondWeapon = weapon;
-                }
-                UpdateStats(item, "DMG");
-            }
-            Console.WriteLine($"{item.Name} equipped!");
-        }
-
-        private void UpdateStats(Item item, params string[] statTypes)
-        {
-            foreach (var stat in statTypes)
-            {
-                if (item.Stats.ContainsKey(stat))
-                {
-                    if (stat == "HP") MaxHP += item.Stats[stat];
-                    else if (stat == "Armor") Armor += item.Stats[stat];
-                    else if (stat == "DMG") DMG += item.Stats[stat];
-                }
-            }
-        }
-
-        public void Rest()
-        {
-            if (HP == MaxHP)
-            {
-                Console.WriteLine("Health is already fully restored!");
-                return;
-            }
-            HP = Math.Min(MaxHP, HP + (Strength * 2));
-            Console.WriteLine($"Rested! HP restored to {HP}.");
-        }
-    }
-
-    // GameWindow class
     public class GameWindow
     {
         private Player player;
         private StoryProgress storyProgress;
+        private Shop shop;
         private List<Item> shopItems;
 
         public GameWindow()
         {
             player = new Player();
             storyProgress = new StoryProgress();
-            shopItems = new List<Item>
-            {
-                new Item("Leather Helmet", new Dictionary<string, int> { { "HP", 5 }, { "Armor", 1 } }, 10),
-                new Item("Chainmail Torso", new Dictionary<string, int> { { "HP", 10 }, { "Armor", 3 } }, 20),
-                new Weapon("Sword", new Dictionary<string, int> { { "DMG", 5 } }, 15)
-            };
+            shop = new Shop();
+            shopItems = shop.GetShopItems();
         }
 
         public void OpenShop()
@@ -317,7 +37,7 @@ namespace RedemptionRPG
             int index = int.Parse(input) - 1;
             if (index >= 0 && index < shopItems.Count)
             {
-                player.BuyItem(shopItems[index]);
+                player.BuyItem(shopItems[index], shop);
             }
         }
 
@@ -349,27 +69,28 @@ namespace RedemptionRPG
                 {
                     stealthSuccess = true;
                     Console.WriteLine("Stealth attack successful! Enemy defeated!");
+                    enemy.HP = 0;
                 }
             }
 
             if (!stealthSuccess)
             {
-                while (player.HP > 0 && enemy.HP > 0)
+                while (player.FullHP > 0 && enemy.HP > 0)
                 {
-                    enemy.HP -= Math.Max(0, player.DMG - enemy.Armor);
+                    enemy.HP -= Math.Max(0, player.FullDMG - enemy.Armor);
                     if (enemy.HP > 0)
                     {
-                        player.HP -= Math.Max(0, enemy.DMG - player.Armor);
+                        player.HP -= Math.Max(0, enemy.DMG - player.FullArmor);
                     }
-                    Console.WriteLine($"Player HP: {player.HP}, Enemy HP: {enemy.HP}");
+                    Console.WriteLine($"Player HP: {player.FullHP}, Enemy HP: {enemy.HP}");
                 }
 
-                if (player.HP <= 0)
+                if (player.FullHP <= 0)
                 {
                     Console.WriteLine("You died! Load a save? (y/n)");
                     if (Console.ReadLine().ToLower() == "y")
                     {
-                        Load();
+                        Load("save.json");
                     }
                     return;
                 }
@@ -389,21 +110,80 @@ namespace RedemptionRPG
         {
             player.Rest();
         }
-
-        public void Save()
+        private class SaveData
         {
-            var saveData = new { Player = player, StoryProgress = storyProgress };
-            File.WriteAllText("save.json", JsonSerializer.Serialize(saveData));
+            public Player Player { get; set; }
+            public StoryProgress StoryProgress { get; set; }
+            public Shop Shop { get; set; }
+        }
+        public class EnemyConverter : JsonConverter<Enemy>
+        {
+            public override Enemy Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                var jsonDoc = JsonDocument.ParseValue(ref reader).RootElement;
+                if (jsonDoc.TryGetProperty("Type", out var typeProperty))
+                {
+                    string type = typeProperty.GetString();
+                    switch (type)
+                    {
+                        case "MiniBoss1":
+                            return JsonSerializer.Deserialize<MiniBoss1>(jsonDoc.GetRawText(), options);
+                        case "FinalBoss":
+                            return JsonSerializer.Deserialize<FinalBoss>(jsonDoc.GetRawText(), options);
+                        default:
+                            throw new NotSupportedException($"Unknown enemy type: {type}");
+                    }
+                }
+                throw new JsonException("Missing 'Type' property for enemy.");
+            }
+
+            public override void Write(Utf8JsonWriter writer, Enemy value, JsonSerializerOptions options)
+            {
+                writer.WriteStartObject();
+                writer.WriteString("Type", value.GetType().Name); // Write the type identifier
+                var json = JsonSerializer.Serialize(value, value.GetType(), options);
+                var doc = JsonDocument.Parse(json);
+                foreach (var prop in doc.RootElement.EnumerateObject())
+                {
+                    prop.WriteTo(writer); // Write all properties of the specific enemy
+                }
+                writer.WriteEndObject();
+            }
+        }
+        public void Save(string FileName)
+        {
+            string savePath = GetSavePath(FileName);
+            var saveData = new SaveData { Player = player, StoryProgress = storyProgress, Shop = shop };
+            var options = new JsonSerializerOptions
+            {
+                Converters = { new EnemyConverter() }, // Add the custom converter
+                WriteIndented = true // Optional: makes JSON more readable
+            };
+            File.WriteAllText(savePath, JsonSerializer.Serialize(saveData, options));
             Console.WriteLine("Game saved!");
         }
-
-        public void Load()
+        private string GetSavePath(string FileName)
         {
-            if (File.Exists("save.json"))
+            string exeDir = Directory.GetCurrentDirectory();
+            string solutionDir = Path.GetFullPath(Path.Combine(exeDir, "..", "..", ".."));
+            solutionDir += "/Saves";
+            return Path.Combine(solutionDir, FileName);
+        }
+
+        public void Load(string FileName)
+        {
+            string savePath = GetSavePath(FileName);
+            if (File.Exists(savePath))
             {
-                string json = File.ReadAllText("save.json");
-                var saveData = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
-                // Note: Proper deserialization requires more setup; this is a placeholder
+                string json = File.ReadAllText(savePath);
+                var options = new JsonSerializerOptions
+                {
+                    Converters = { new EnemyConverter() } // Add the custom converter
+                };
+                var saveData = JsonSerializer.Deserialize<SaveData>(json, options);
+                player = saveData.Player;
+                storyProgress = saveData.StoryProgress;
+                shop = saveData.Shop;
                 Console.WriteLine("Game loaded!");
             }
             else
@@ -416,7 +196,7 @@ namespace RedemptionRPG
         {
             while (true)
             {
-                Console.WriteLine($"\nHP: {player.HP}/{player.MaxHP}, Gold: {player.Gold}, EXP: {player.Experience}, Level: {player.Level}");
+                Console.WriteLine($"\nHP: {player.FullHP}/{player.FullMaxHP}, Armor: {player.FullArmor}, DMG: {player.FullDMG}, Gold: {player.Gold}, EXP: {player.Experience}, Level: {player.Level}, Strength: {player.Strength}, Stealth: {player.Stealth}, Agility: {player.Agility}, Charisma: {player.Charisma}");
                 Console.WriteLine("1. Shop");
                 Console.WriteLine("2. Farm");
                 Console.WriteLine("3. Story");
@@ -449,10 +229,10 @@ namespace RedemptionRPG
                         player.ViewInventory();
                         break;
                     case "7":
-                        Save();
+                        Save("save.json");
                         break;
                     case "8":
-                        Load();
+                        Load("save.json");
                         break;
                     case "9":
                         return;
