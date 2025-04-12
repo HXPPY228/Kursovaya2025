@@ -110,86 +110,17 @@ namespace lab2
         {
             player.Rest();
         }
-        private class SaveData
-        {
-            public Player Player { get; set; }
-            public StoryProgress StoryProgress { get; set; }
-            public Shop Shop { get; set; }
-        }
-        public class EnemyConverter : JsonConverter<Enemy>
-        {
-            public override Enemy Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-            {
-                var jsonDoc = JsonDocument.ParseValue(ref reader).RootElement;
-                if (jsonDoc.TryGetProperty("Type", out var typeProperty))
-                {
-                    string type = typeProperty.GetString();
-                    switch (type)
-                    {
-                        case "MiniBoss1":
-                            return JsonSerializer.Deserialize<MiniBoss1>(jsonDoc.GetRawText(), options);
-                        case "FinalBoss":
-                            return JsonSerializer.Deserialize<FinalBoss>(jsonDoc.GetRawText(), options);
-                        default:
-                            throw new NotSupportedException($"Unknown enemy type: {type}");
-                    }
-                }
-                throw new JsonException("Missing 'Type' property for enemy.");
-            }
-
-            public override void Write(Utf8JsonWriter writer, Enemy value, JsonSerializerOptions options)
-            {
-                writer.WriteStartObject();
-                writer.WriteString("Type", value.GetType().Name); // Write the type identifier
-                var json = JsonSerializer.Serialize(value, value.GetType(), options);
-                var doc = JsonDocument.Parse(json);
-                foreach (var prop in doc.RootElement.EnumerateObject())
-                {
-                    prop.WriteTo(writer); // Write all properties of the specific enemy
-                }
-                writer.WriteEndObject();
-            }
-        }
+        
+        
         public void Save(string FileName)
         {
-            string savePath = GetSavePath(FileName);
-            var saveData = new SaveData { Player = player, StoryProgress = storyProgress, Shop = shop };
-            var options = new JsonSerializerOptions
-            {
-                Converters = { new EnemyConverter() }, // Add the custom converter
-                WriteIndented = true // Optional: makes JSON more readable
-            };
-            File.WriteAllText(savePath, JsonSerializer.Serialize(saveData, options));
-            Console.WriteLine("Game saved!");
+            
         }
-        private string GetSavePath(string FileName)
-        {
-            string exeDir = Directory.GetCurrentDirectory();
-            string solutionDir = Path.GetFullPath(Path.Combine(exeDir, "..", "..", ".."));
-            solutionDir += "/Saves";
-            return Path.Combine(solutionDir, FileName);
-        }
+        
 
         public void Load(string FileName)
         {
-            string savePath = GetSavePath(FileName);
-            if (File.Exists(savePath))
-            {
-                string json = File.ReadAllText(savePath);
-                var options = new JsonSerializerOptions
-                {
-                    Converters = { new EnemyConverter() } // Add the custom converter
-                };
-                var saveData = JsonSerializer.Deserialize<SaveData>(json, options);
-                player = saveData.Player;
-                storyProgress = saveData.StoryProgress;
-                shop = saveData.Shop;
-                Console.WriteLine("Game loaded!");
-            }
-            else
-            {
-                Console.WriteLine("Save file not found!");
-            }
+            
         }
 
         public void Run()
