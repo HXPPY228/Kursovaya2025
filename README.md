@@ -4,7 +4,7 @@
 ## Автор
 Стецурин Елисей Олегович 353504
 ## Диаграмма классов
-![UML Diagram](../images/UML_Diagram.png)
+![UML_Diagram](images/UML_Diagram.png)
 
 ## Функциональные требования (Use Cases)
 ### 1. Покупка предметов
