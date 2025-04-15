@@ -29,11 +29,13 @@ namespace lab2
         public int AddedHP { get; set; }
         public int AddedDMG { get; set; }
         public int AddedArmor { get; set; }
+        public int AddedStealth { get; set; }
 
         public int FullHP => (HP + Strength) + AddedHP;
         public int FullMaxHP => (MaxHP + Strength) + AddedHP;
         public int FullDMG => (DMG + (Strength / 2) + (Agility / 2)) + AddedDMG;
         public int FullArmor => (Armor + Agility) + AddedArmor;
+        public int FullStealth => (Stealth + (Agility / 2)) + AddedStealth;
 
         public Player()
         {
@@ -51,6 +53,7 @@ namespace lab2
             AddedHP = 0;
             AddedDMG = 0;
             AddedArmor = 0;
+            AddedStealth = 0;
             Inventory = new List<Item>();
         }
 
@@ -100,34 +103,23 @@ namespace lab2
             }
         }
 
-        public void ViewInventory()
+        public List<Item> GetEquippedItems()
         {
-            Console.WriteLine("Equipped Items:");
-            Console.WriteLine($"Head: {(Head != null ? Head.Name : "None")}");
-            Console.WriteLine($"Torso: {(Torso != null ? Torso.Name : "None")}");
-            Console.WriteLine($"Legs: {(Legs != null ? Legs.Name : "None")}");
-            Console.WriteLine($"Boots: {(Boots != null ? Boots.Name : "None")}");
-            Console.WriteLine($"First Weapon: {(FirstWeapon != null ? FirstWeapon.Name : "None")}");
-            Console.WriteLine($"Second Weapon: {(SecondWeapon != null ? SecondWeapon.Name : "None")}");
-            Console.WriteLine("\nInventory:");
-            for (int i = 0; i < Inventory.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}. {Inventory[i].Name}");
-            }
-
-            Console.WriteLine("Enter the number of the item to equip (or 0 to exit):");
-            string input = Console.ReadLine();
-            if (input == "0") return;
-
-            int index = int.Parse(input) - 1;
-            if (index >= 0 && index < Inventory.Count)
-            {
-                Item item = Inventory[index];
-                EquipItem(item);
-            }
+            return new List<Item>{
+                Head,
+                Torso,
+                Legs,
+                Boots,
+                FirstWeapon,
+                SecondWeapon
+            };
+        }
+        public List<Item> GetInventory()
+        {
+            return Inventory;
         }
 
-        private void EquipItem(Item item)
+        public void EquipItem(Item item)
         {
             switch (item.Type)
             {
@@ -139,7 +131,7 @@ namespace lab2
                     }
                     else
                     {
-                        Console.WriteLine("Слот для головного убора уже занят.");
+                        //Console.WriteLine("Слот для головного убора уже занят.");
                         return;
                     }
                     break;
@@ -151,7 +143,7 @@ namespace lab2
                     }
                     else
                     {
-                        Console.WriteLine("Слот для брони на торс уже занят.");
+                        //Console.WriteLine("Слот для брони на торс уже занят.");
                         return;
                     }
                     break;
@@ -163,7 +155,7 @@ namespace lab2
                     }
                     else
                     {
-                        Console.WriteLine("Слот для штанов уже занят.");
+                        //Console.WriteLine("Слот для штанов уже занят.");
                         return;
                     }
                     break;
@@ -175,7 +167,7 @@ namespace lab2
                     }
                     else
                     {
-                        Console.WriteLine("Слот для обуви уже занят.");
+                        //Console.WriteLine("Слот для обуви уже занят.");
                         return;
                     }
                     break;
@@ -189,7 +181,7 @@ namespace lab2
                         }
                         else
                         {
-                            Console.WriteLine("Слот для основного оружия уже занят.");
+                            //Console.WriteLine("Слот для основного оружия уже занят.");
                             return;
                         }
                     }
@@ -204,17 +196,17 @@ namespace lab2
                         }
                         else
                         {
-                            Console.WriteLine("Слот для вторичного оружия уже занят.");
+                            //Console.WriteLine("Слот для вторичного оружия уже занят.");
                             return;
                         }
                     }
                     break;
                 default:
-                    Console.WriteLine("Неизвестный тип экипировки.");
+                    //Console.WriteLine("Неизвестный тип экипировки.");
                     return;
             }
             Inventory.Remove(item);
-            Console.WriteLine($"{item.Name} надет!");
+            //Console.WriteLine($"{item.Name} надет!");
         }
 
         private void UpdateStats(Item item, int multiplier = 1)
@@ -225,6 +217,8 @@ namespace lab2
                 AddedDMG += item.Stats["DMG"] * multiplier;
             if (item.Stats.ContainsKey("Armor"))
                 AddedArmor += item.Stats["Armor"] * multiplier;
+            if (item.Stats.ContainsKey("Stealth"))
+                AddedStealth += item.Stats["Stealth"] * multiplier;
         }
 
         public void Rest()
@@ -235,7 +229,6 @@ namespace lab2
                 return;
             }
             HP = MaxHP;
-            Console.WriteLine($"Rested! HP restored to {FullMaxHP}.");
         }
     }
 }

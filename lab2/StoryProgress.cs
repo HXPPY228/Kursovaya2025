@@ -15,8 +15,8 @@ namespace lab2
         public StoryProgress()
         {
             CompletedEnemies = new List<Enemy>();
-            // Initial story enemy
-            CurrentEnemy = new MiniBoss1();
+            var factory = new EnemyFactory();
+            CurrentEnemy = factory.CreateEnemy("miniboss1");
         }
 
         public void AdvanceStory(Player player)
@@ -24,7 +24,8 @@ namespace lab2
             CompletedEnemies.Add(CurrentEnemy);
             if (CompletedEnemies.Count == 1)
             {
-                CurrentEnemy = new FinalBoss();
+                var factory = new EnemyFactory();
+                CurrentEnemy = factory.CreateEnemy("finalboss");
             }
             else
             {

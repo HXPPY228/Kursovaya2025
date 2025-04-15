@@ -21,7 +21,7 @@ namespace lab2
                 new Item("Leather Pants", new Dictionary<string, int> { { "HP", 7 }, { "Armor", 2 } }, 15, EquipmentType.Legs),
                 new Item("Traveler's Boots", new Dictionary<string, int> { { "HP", 3 }, { "Armor", 1 } }, 8, EquipmentType.Boots),
                 new Weapon("Sword", new Dictionary<string, int> { { "DMG", 5 } }, 15, EquipmentType.FirstWeapon),
-                new Weapon("Dagger", new Dictionary<string, int> { { "DMG", 3 } }, 10, EquipmentType.SecondWeapon)
+                new Weapon("Dagger", new Dictionary<string, int> { { "Stealth", 3 } }, 10, EquipmentType.SecondWeapon)
             };
         }
 
@@ -39,16 +39,16 @@ namespace lab2
                     player.Gold -= discountedPrice;
                     player.Inventory.Add(item);
                     shopItems.Remove(item);
-                    Console.WriteLine($"Bought {item.Name} for {discountedPrice} gold!");
+                    //Console.WriteLine($"Bought {item.Name} for {discountedPrice} gold!");
                 }
                 else
                 {
-                    Console.WriteLine("Not enough gold!");
+                    //Console.WriteLine("Not enough gold!");
                 }
             }
             else
             {
-                Console.WriteLine("Item not found in shop!");
+                //Console.WriteLine("Item not found in shop!");
             }
         }
     }
