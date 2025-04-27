@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ui.CharacterCreationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Create Character">
+
+    <Grid Padding="20" ColumnSpacing="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Левая часть: Картинка -->
+        <Image
+          x:Name="GenderImage"
+          Source="avatar_default.png"
+          Aspect="AspectFit"
+          Grid.Column="0"
+            Grid.Row="0"
+          VerticalOptions="Fill"
+          HorizontalOptions="Center" />
+
+        <!-- Правая часть: Форма -->
+        <VerticalStackLayout
+          Grid.Column="1"
+            Grid.Row="0"
+          Spacing="20"
+          VerticalOptions="Center"
+          HorizontalOptions="FillAndExpand"
+          Margin="0,-90,0,0">
+
+            <!-- Ввод имени -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Имя персонажа:" FontAttributes="Bold" />
+                <Entry
+                  x:Name="NameEntry"
+                  Placeholder="Введите имя" />
+            </VerticalStackLayout>
+
+            <!-- Выбор пола -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Пол:" FontAttributes="Bold" />
+                <Picker
+                  x:Name="GenderPicker"
+                  Title="Выберите пол">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Мужской</x:String>
+                            <x:String>Женский</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </VerticalStackLayout>
+
+            <!-- Кнопка продолжения -->
+            <Button
+                Text="Продолжить"
+                Clicked="OnContinueClicked"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+        
+        <Button
+            Text="Назад"
+            Clicked="OnBackClicked"
+            HorizontalOptions="Center"
+            Grid.Row="1"
+            Grid.ColumnSpan="2" />
+    </Grid>
+</ContentPage>

@@ -34,7 +34,7 @@ namespace Work2Tests
             Console.SetOut(sw);
 
             // Act
-            player.UpgradeStats();
+            player.UpgradeStats(1);
 
             Assert.AreEqual(1, player.Level, "Уровень игрока не должен измениться.");
         }
@@ -52,7 +52,7 @@ namespace Work2Tests
             Console.SetIn(input);
 
             // Act
-            player.UpgradeStats();
+            player.UpgradeStats(1);
 
             // Assert
             Assert.AreEqual(2, player.Level, "Уровень должен увеличиться на 1.");
@@ -66,9 +66,9 @@ namespace Work2Tests
             var player = new Player();
             // Помещаем тестовые предметы в слоты экипировки
             var headItem = new Item("Test Helmet", new Dictionary<string, int> { { "HP", 10 }, { "Armor", 2 } }, 20, EquipmentType.Head);
-            player.Head = headItem;
+            player.Equipment.Head = headItem;
             var torsoItem = new Item("Test Torso", new Dictionary<string, int> { { "HP", 10 }, { "Armor", 3 } }, 20, EquipmentType.Torso);
-            player.Torso = torsoItem;
+            player.Equipment.Torso = torsoItem;
 
             // Act
             List<Item> equipped = player.GetEquippedItems();
@@ -114,7 +114,7 @@ namespace Work2Tests
             player.EquipItem(headItem);
 
             // Assert
-            Assert.AreEqual(headItem, player.Head, "Головной слот должен содержать экипированный предмет.");
+            Assert.AreEqual(headItem, player.Equipment.Head, "Головной слот должен содержать экипированный предмет.");
             Assert.IsFalse(player.Inventory.Contains(headItem), "Экипированный предмет должен удаляться из инвентаря.");
             Assert.AreEqual(baseFullHP + 10, player.FullHP, "Общий HP должен увеличиться на значение из экипировки.");
         }
