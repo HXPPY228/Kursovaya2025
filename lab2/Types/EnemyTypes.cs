@@ -16,12 +16,10 @@ namespace lab2.Types
     }
     public class MiniBoss1 : Enemy
     {
-        public string Type => "MiniBoss1";
         public MiniBoss1() : base("Dan 'Axe' Radley", 30, 3, 8, 3, 15, 10) { }
     }
     public class FinalBoss : Enemy
     {
-        public string Type => "FinalBoss";
         public FinalBoss() : base("Garret 'Claw' Veil", 100, 10, 20, 10, 50, 50) { }
     }
 }

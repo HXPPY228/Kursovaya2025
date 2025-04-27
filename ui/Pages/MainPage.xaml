@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ui.MainPage">
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="4*" />
+            </Grid.RowDefinitions>
+
+            <VerticalStackLayout
+                Grid.Row="1"
+                Spacing="15"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+
+                <Label
+                    Text="RedemtionRPG"
+                    Style="{StaticResource Headline}"
+                    SemanticProperties.HeadingLevel="Level1"
+                    HorizontalOptions="Center" />
+
+                <Image
+                    Source="game_icon.png"
+                    HeightRequest="500"
+                    Aspect="AspectFit"
+                    HorizontalOptions="Center" />
+
+                <Button
+                    x:Name="NewGameBtn"
+                    Text="Start New Game"
+                    Clicked="OnNewGameClicked"
+                    HorizontalOptions="Fill" />
+
+                <Button
+                    x:Name="LoadGameBtn"
+                    Text="Load Game"
+                    Clicked="OnLoadGameClicked"
+                    HorizontalOptions="Fill" />
+
+                <Button
+                    x:Name="ExitBtn"
+                    Text="Exit"
+                    Clicked="OnExitClicked"
+                    HorizontalOptions="Fill"
+                    WidthRequest="100"
+                    HeightRequest="40"/>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
