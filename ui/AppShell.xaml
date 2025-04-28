@@ -20,8 +20,12 @@
         ContentTemplate="{DataTemplate local:CharacterCreationPage}"
         Route="CharacterCreationPage" />
     <ShellContent
-    Title="LoadGame"
-    ContentTemplate="{DataTemplate local:LoadGamePage}"
-    Route="LoadGamePage" />
+        Title="LoadGame"
+        ContentTemplate="{DataTemplate local:LoadGamePage}"
+        Route="LoadGamePage" />
+    <ShellContent
+        Title="Story"
+        ContentTemplate="{DataTemplate local:StoryPage}"
+        Route="StoryPage" />
 
 </Shell>

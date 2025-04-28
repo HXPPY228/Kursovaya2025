@@ -40,8 +40,7 @@ public partial class CharacterCreationPage : ContentPage
 
         GameState.Player = new Player(name, gender);
 
-        // Идём дальше сразу в игровую страницу
-        await Shell.Current.GoToAsync(nameof(GamePage));
+        await Shell.Current.GoToAsync(nameof(StoryPage));
     }
     private async void OnBackClicked(object sender, EventArgs e)
     {
