@@ -2,18 +2,77 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="ui.GamePage"
-    Title="Game">
-    <StackLayout Padding="20" Spacing="15">
-        <!-- Здесь вы можете разместить любые элементы для отображения игры -->
-        <Label Text="Игра загружается…" 
-           FontSize="24" 
-           HorizontalOptions="Center" />
-        <!-- Например, контейнер для вывода консоли игры -->
-        <ScrollView>
-            <Label x:Name="ConsoleOutput"
-             FontFamily="Courier New"
-             LineBreakMode="NoWrap" />
-        </ScrollView>
-    </StackLayout>
+    x:Class="ui.GamePage">
+
+    <Grid Padding="20">
+        <!-- Define two columns: left for character, right for buttons -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Left column: Character avatar and name -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Player name label -->
+            <Label x:Name="NickLabel"
+                   TextColor="White"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="0" />
+
+            <!-- Character avatar image -->
+            <Image x:Name="AvatarImage"
+                   Aspect="AspectFit"
+                   Grid.Row="1" />
+
+            <!-- Stats section (without level, experience, and gold) -->
+            <VerticalStackLayout Grid.Row="2" Spacing="5" Padding="10">
+                <Label x:Name="HPLabel" FontSize="16" TextColor="White" />
+                <Label x:Name="DMGLabel" FontSize="16" TextColor="White" />
+                <Label x:Name="ArmorLabel" FontSize="16" TextColor="White" />
+                <Label x:Name="StealthLabel" FontSize="16" TextColor="White" />
+                <Label x:Name="StrengthLabel" FontSize="16" TextColor="White" />
+                <Label x:Name="AgilityLabel" FontSize="16" TextColor="White" />
+                <Label x:Name="CharismaLabel" FontSize="16" TextColor="White" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Right column: Buttons and top-right stats -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Top-right: Level, Experience, Gold -->
+            <HorizontalStackLayout Grid.Row="0" Spacing="10" Padding="10" HorizontalOptions="End">
+                <Label x:Name="LevelLabel" FontSize="16" TextColor="White" />
+                <Label x:Name="ExperienceLabel" FontSize="16" TextColor="White" />
+                <Label x:Name="GoldLabel" FontSize="16" TextColor="White" />
+                <WebView x:Name="CoinAnimation"
+                         WidthRequest="25"
+                         HeightRequest="25"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Buttons -->
+            <VerticalStackLayout Grid.Row="1" Spacing="10" HorizontalOptions="End" VerticalOptions="Center">
+                <Button Text="Магазин"      WidthRequest="300" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
+                <Button Text="Прокачка"     WidthRequest="300" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
+                <Button Text="Инвентарь"    WidthRequest="300" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
+                <Button Text="Отдых"        WidthRequest="300" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
+                <Button Text="Фарм"         WidthRequest="300" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
+                <Button Text="Сюжет"        WidthRequest="300" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
+                <Button Text="Сохранить"    WidthRequest="300" HeightRequest="45" CornerRadius="8" BackgroundColor="#777" TextColor="White" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>

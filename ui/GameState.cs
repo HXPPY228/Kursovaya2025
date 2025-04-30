@@ -17,7 +17,7 @@ namespace ui
         {
             var bases = new[]
             {
-                "s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11",
+                "s1","s2","s3","s4","s5","s6","s7.png","s8.png","s9.png","s10","s11",
                 "",
                 "",""
             };
@@ -76,9 +76,6 @@ namespace ui
             if (baseName.StartsWith("s", StringComparison.OrdinalIgnoreCase)
                 && int.TryParse(baseName.Substring(1), out int sceneNumber))
             {
-                if (sceneNumber >= 7 && sceneNumber <= 9)
-                    return $"{baseName}.png";
-
                 var suffix = Player.Gender ? "m" : "w";
                 return $"{baseName}{suffix}.png";
             }
