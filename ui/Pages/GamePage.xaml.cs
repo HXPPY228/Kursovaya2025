@@ -14,6 +14,8 @@ public partial class GamePage : ContentPage
         AvatarImage.Source = avatarSource;
         NickLabel.Text = GameState.Player.Name;
 
+        GameState.Player.HP -= 5;
+
         UpdateStats();
         LoadCoinGif();
     }
@@ -22,14 +24,21 @@ public partial class GamePage : ContentPage
         var player = GameState.Player;
         LevelLabel.Text = $"Уровень: {player.Level}";
         ExperienceLabel.Text = $"Опыт: {player.Experience}/{player.Level*5}";
-        GoldLabel.Text = $"{player.Gold}";
-        HPLabel.Text = $"Здоровье: {player.FullHP}/{player.FullMaxHP}";
+        GoldLabel.Text = $"Золото: {player.Gold}";
+        double hpPercentage = (double)player.FullHP / player.FullMaxHP;
+        HPBar1.Progress = hpPercentage;
+        HPBar2.Progress = hpPercentage;
+        HPBar3.Progress = hpPercentage;
+        HPBar4.Progress = hpPercentage;
+        HPBar5.Progress = hpPercentage;
+        HPLabel.Text = $"{player.FullHP}/{player.FullMaxHP}";
         DMGLabel.Text = $"Урон: {player.FullDMG}";
         ArmorLabel.Text = $"Броня: {player.FullArmor}";
         StealthLabel.Text = $"Скрытность: {player.FullStealth}";
         StrengthLabel.Text = $"Сила: {player.Strength}";
         AgilityLabel.Text = $"Ловкость: {player.Agility}";
         CharismaLabel.Text = $"Харизма: {player.Charisma}";
+        UpdateUI();
     }
     private void LoadCoinGif()
     {
@@ -49,5 +58,16 @@ public partial class GamePage : ContentPage
         };
 
         CoinAnimation.Source = htmlSource;
+    }
+    private void OnRestButtonClicked(object sender, EventArgs e)
+    {
+        int healthRestored = GameState.Game.Rest();
+        // Optionally display a message
+        DisplayAlert("Отдых", $"Восстановлено здоровья: {healthRestored}", "OK");
+        UpdateStats();
+    }
+    private void UpdateUI()
+    {
+        RestButton.IsEnabled = GameState.Player.FullHP < GameState.Player.FullMaxHP;
     }
 }
