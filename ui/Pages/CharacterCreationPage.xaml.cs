@@ -39,6 +39,7 @@ public partial class CharacterCreationPage : ContentPage
         bool gender = GenderPicker.SelectedItem as string == "Мужской";
 
         GameState.Player = new Player(name, gender);
+        GameState.Shop = new Shop();
 
         await Shell.Current.GoToAsync(nameof(StoryPage));
     }

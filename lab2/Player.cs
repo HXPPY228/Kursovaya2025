@@ -57,9 +57,9 @@ namespace lab2
             Equipment = new Equipment();
         }
 
-        public void BuyItem(Item item, Shop shop)
+        public bool BuyItem(Item item, Shop shop)
         {
-            shop.SellItem(item, this);
+            return shop.SellItem(item, this);
         }
 
         public bool UpgradeStats(int choice)

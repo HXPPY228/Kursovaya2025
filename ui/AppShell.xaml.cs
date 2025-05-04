@@ -11,6 +11,7 @@
             Routing.RegisterRoute("CharacterCreationPage", typeof(CharacterCreationPage));
             Routing.RegisterRoute("LoadGamePage", typeof(LoadGamePage));
             Routing.RegisterRoute("StoryPage", typeof(StoryPage));
+            Routing.RegisterRoute("ShopPage", typeof(ShopPage));
         }
     }
 }

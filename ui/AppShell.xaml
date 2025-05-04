@@ -27,5 +27,9 @@
         Title="Story"
         ContentTemplate="{DataTemplate local:StoryPage}"
         Route="StoryPage" />
+    <ShellContent
+        Title="Shop"
+        ContentTemplate="{DataTemplate local:ShopPage}"
+        Route="ShopPage" />
 
 </Shell>

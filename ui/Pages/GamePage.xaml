@@ -7,8 +7,8 @@
     <Grid Padding="20">
         <!-- Define two columns: left for character, right for buttons -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
         <!-- Left column: Character avatar and name -->
@@ -96,7 +96,7 @@
             
             <!-- Buttons -->
             <VerticalStackLayout Grid.Row="3" Spacing="10" HorizontalOptions="End" VerticalOptions="Center">
-                <Button Text="Магазин"      WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
+                <Button Text="Магазин"      WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" Clicked="OnShopButtonClicked"/>
                 <Button Text="Прокачка"     WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
                 <Button Text="Инвентарь"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
                 <Button Text="Отдохнуть"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" x:Name="RestButton" Clicked="OnRestButtonClicked"/>

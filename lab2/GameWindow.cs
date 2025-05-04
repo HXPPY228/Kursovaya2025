@@ -11,21 +11,29 @@ namespace lab2
 {
     public class GameWindow
     {
-        private Player player;
+        public Player player { get; set; }
         private StoryProgress storyProgress;
-        private Shop shop;
+        public Shop shop { get; set; }
 
-        public GameWindow(Player player)
+        public GameWindow(Player player, Shop shop)
         {
             this.player = player;
             storyProgress = new StoryProgress();
-            shop = new Shop();
+            this.shop = shop;
+        }
+        public bool SpendGold(int gold)
+        {
+            if (player.Gold < gold)
+            {
+                return false;
+            }
+            player.Gold -= gold;
+            return true;
         }
 
-        public Shop OpenShop()
+        public List<Item> GetShopItems()
         {
-            Console.WriteLine("Welcome to the Shop!");
-            return shop;
+            return shop.GetShopItems();
         }
 
         public Enemy StartFarm()

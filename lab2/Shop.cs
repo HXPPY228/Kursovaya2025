@@ -29,7 +29,7 @@ namespace lab2
         {
             return shopItems;
         }
-        public void SellItem(Item item, Player player)
+        public bool SellItem(Item item, Player player)
         {
             if (shopItems.Contains(item))
             {
@@ -39,16 +39,16 @@ namespace lab2
                     player.Gold -= discountedPrice;
                     player.Inventory.Add(item);
                     shopItems.Remove(item);
-                    //Console.WriteLine($"Bought {item.Name} for {discountedPrice} gold!");
+                    return true;
                 }
                 else
                 {
-                    //Console.WriteLine("Not enough gold!");
+                    return false;
                 }
             }
             else
             {
-                //Console.WriteLine("Item not found in shop!");
+                return false;
             }
         }
     }

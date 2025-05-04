@@ -8,20 +8,18 @@ public partial class GamePage : ContentPage
     {
         InitializeComponent();
 
-        GameState.Game = new GameWindow(GameState.Player);
-        string avatarSource = GameState.Player.Gender ? "avatar_male.png" : "avatar_female.png";
+        GameState.Game = new GameWindow(GameState.Player, GameState.Shop);
+        string avatarSource = GameState.Game.player.Gender ? "avatar_male.png" : "avatar_female.png";
 
         AvatarImage.Source = avatarSource;
-        NickLabel.Text = GameState.Player.Name;
-
-        GameState.Player.HP -= 5;
-
+        NickLabel.Text = GameState.Game.player.Name;
+        //GameState.Player.Gold = 30;
         UpdateStats();
         LoadCoinGif();
     }
     private void UpdateStats()
     {
-        var player = GameState.Player;
+        var player = GameState.Game.player;
         LevelLabel.Text = $"Уровень: {player.Level}";
         ExperienceLabel.Text = $"Опыт: {player.Experience}/{player.Level*5}";
         GoldLabel.Text = $"Золото: {player.Gold}";
@@ -42,7 +40,6 @@ public partial class GamePage : ContentPage
     }
     private void LoadCoinGif()
     {
-        // HTML content to display the GIF
         string htmlContent = $@"
             <html>
                 <body style='margin:0; padding:0; background-color:#1C2526; display:flex; justify-content:center; align-items:center;'>
@@ -50,7 +47,6 @@ public partial class GamePage : ContentPage
                 </body>
             </html>";
 
-        // Use HtmlWebViewSource to load the HTML content
         var htmlSource = new HtmlWebViewSource
         {
             Html = htmlContent,
@@ -61,10 +57,18 @@ public partial class GamePage : ContentPage
     }
     private void OnRestButtonClicked(object sender, EventArgs e)
     {
-        int healthRestored = GameState.Game.Rest();
-        // Optionally display a message
-        DisplayAlert("Отдых", $"Восстановлено здоровья: {healthRestored}", "OK");
-        UpdateStats();
+        if (GameState.Game.SpendGold(5 * GameState.Game.player.Level)){
+            int healthRestored = GameState.Game.Rest();
+            DisplayAlert("Отдых", $"Восстановлено здоровья: {healthRestored}.\nЗолото потраченное на ночлег: {5 * GameState.Game.player.Level}.", "OK");
+            UpdateStats();
+        } else
+        {
+            DisplayAlert("Нет денег!", $"Золото необходимое на ночлег: {5 * GameState.Game.player.Level}.", "OK");
+        }
+    }
+    private async void OnShopButtonClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//ShopPage");
     }
     private void UpdateUI()
     {

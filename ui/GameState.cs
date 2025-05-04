@@ -11,6 +11,7 @@ namespace ui
     {
         public static Player Player { get; set; }
         public static GameWindow Game { get; set; }
+        public static Shop Shop { get; set; }
         public static List<(string Text, string ImagePath)> StoryScenes { get; private set; }
         public static int CurrentSceneIndex { get; set; } = 0;
         public static void InitializeStory()
