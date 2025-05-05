@@ -12,8 +12,8 @@ namespace lab2
     {
         public int Damage => Stats.ContainsKey("DMG") ? Stats["DMG"] : 0;
 
-        public Weapon(string name, Dictionary<string, int> stats, int price, EquipmentType type)
-            : base(name, stats, price, type)
+        public Weapon(string name, Dictionary<string, int> stats, int price, EquipmentType type, string path)
+            : base(name, stats, price, type, path)
         {
         }
     }

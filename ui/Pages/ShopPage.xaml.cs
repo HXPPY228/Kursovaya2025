@@ -27,9 +27,9 @@ public partial class ShopPage : ContentPage
         ShopItems = new ObservableCollection<Item>(GameState.Game.GetShopItems());
     }
 
-    private async void OnBackButtonClicked(object sender, EventArgs e)
+    private void OnBackButtonClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(GamePage));
+        Shell.Current.GoToAsync(nameof(GamePage));
     }
     private void LoadCoinGif()
     {

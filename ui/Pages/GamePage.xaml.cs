@@ -36,8 +36,22 @@ public partial class GamePage : ContentPage
         StrengthLabel.Text = $"Сила: {player.Strength}";
         AgilityLabel.Text = $"Ловкость: {player.Agility}";
         CharismaLabel.Text = $"Харизма: {player.Charisma}";
+
+        UpdateEquipmentImages();
+
         UpdateUI();
     }
+    private void UpdateEquipmentImages()
+    {
+        var equipment = GameState.Game.player.Equipment;
+        HeadImage.Source = equipment.Head?.Path;
+        TorsoImage.Source = equipment.Torso?.Path;
+        LegsImage.Source = equipment.Legs?.Path;
+        BootsImage.Source = equipment.Boots?.Path;
+        FirstWeaponImage.Source = equipment.FirstWeapon?.Path;
+        SecondWeaponImage.Source = equipment.SecondWeapon?.Path;
+    }
+
     private void LoadCoinGif()
     {
         string htmlContent = $@"
@@ -68,7 +82,11 @@ public partial class GamePage : ContentPage
     }
     private async void OnShopButtonClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//ShopPage");
+        await Shell.Current.GoToAsync("ShopPage");
+    }
+    private async void OnInventoryButtonClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("InventoryPage");
     }
     private void UpdateUI()
     {

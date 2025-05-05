@@ -12,6 +12,7 @@
             Routing.RegisterRoute("LoadGamePage", typeof(LoadGamePage));
             Routing.RegisterRoute("StoryPage", typeof(StoryPage));
             Routing.RegisterRoute("ShopPage", typeof(ShopPage));
+            Routing.RegisterRoute("InventoryPage", typeof(InventoryPage));
         }
     }
 }

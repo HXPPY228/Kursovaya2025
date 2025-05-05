@@ -13,13 +13,15 @@ namespace lab2
         public Dictionary<string, int> Stats { get; set; }
         public int Price { get; set; }
         public EquipmentType Type { get; set; }
+        public string Path { get; set; }
 
-        public Item(string name, Dictionary<string, int> stats, int price, EquipmentType type)
+        public Item(string name, Dictionary<string, int> stats, int price, EquipmentType type, string path)
         {
             Name = name;
             Stats = stats;
             Price = price;
             Type = type;
+            Path = path;
         }
     }
 }

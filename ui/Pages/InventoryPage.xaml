@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ui="clr-namespace:ui"
+             x:Class="ui.InventoryPage"
+             Title="Inventory">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ui:StatsConverter x:Key="StatsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*" Padding="10">
+            <Frame Grid.Column="0" HeightRequest="200" WidthRequest="200" Padding="5" CornerRadius="10" BackgroundColor="Gray">
+                <Image Source="{Binding EquippedItems[0].Path, FallbackValue=''}" 
+                       WidthRequest="190" HeightRequest="190" 
+                       Aspect="AspectFit" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" />
+            </Frame>
+            <Frame Grid.Column="1" HeightRequest="200" WidthRequest="200" Padding="5" CornerRadius="10" BackgroundColor="Gray">
+                <Image Source="{Binding EquippedItems[1].Path, FallbackValue=''}" 
+                       WidthRequest="190" HeightRequest="190" 
+                       Aspect="AspectFit" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" />
+            </Frame>
+            <Frame Grid.Column="2" HeightRequest="200" WidthRequest="200" Padding="5" CornerRadius="10" BackgroundColor="Gray">
+                <Image Source="{Binding EquippedItems[2].Path, FallbackValue=''}" 
+                       WidthRequest="190" HeightRequest="190" 
+                       Aspect="AspectFit" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" />
+            </Frame>
+            <Frame Grid.Column="3" HeightRequest="200" WidthRequest="200" Padding="5" CornerRadius="10" BackgroundColor="Gray">
+                <Image Source="{Binding EquippedItems[3].Path, FallbackValue=''}" 
+                       WidthRequest="190" HeightRequest="190" 
+                       Aspect="AspectFit" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" />
+            </Frame>
+            <Frame Grid.Column="4" HeightRequest="200" WidthRequest="200" Padding="5" CornerRadius="10" BackgroundColor="Gray">
+                <Image Source="{Binding EquippedItems[4].Path, FallbackValue=''}" 
+                       WidthRequest="190" HeightRequest="190" 
+                       Aspect="AspectFit" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" />
+            </Frame>
+            <Frame Grid.Column="5" HeightRequest="200" WidthRequest="200" Padding="5" CornerRadius="10" BackgroundColor="Gray">
+                <Image Source="{Binding EquippedItems[5].Path, FallbackValue=''}" 
+                       WidthRequest="190" HeightRequest="190" 
+                       Aspect="AspectFit" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" />
+            </Frame>
+        </Grid>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding InventoryItems}" Margin="10" SelectionMode="Single" SelectionChanged="OnInventoryItemSelected">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="8" HorizontalItemSpacing="10" VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="Transparent" WidthRequest="150" HeightRequest="204" Padding="5">
+                        <VerticalStackLayout Spacing="4">
+                            <Image Source="{Binding Path}" WidthRequest="150" HeightRequest="150" HorizontalOptions="Center" />
+                            <Label Text="{Binding Name}" FontSize="14" HorizontalOptions="Center" />
+                            <Label FontSize="12" HorizontalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Stats, Converter={StaticResource StatsConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="2" Text="Вернуться" Clicked="OnBackButtonClicked" HorizontalOptions="Center" Margin="10" />
+    </Grid>
+</ContentPage>

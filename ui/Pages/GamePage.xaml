@@ -5,13 +5,11 @@
     x:Class="ui.GamePage">
 
     <Grid Padding="20">
-        <!-- Define two columns: left for character, right for buttons -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Left column: Character avatar and name -->
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -19,16 +17,23 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <!-- Player name label -->
             <Label x:Name="NickLabel"
                    TextColor="White"
                    FontSize="20"
                    HorizontalTextAlignment="Center"
-                   Grid.Row="0" />
+                   Grid.Row="0" Margin="0,-20,0,10"/>
 
-            <Image x:Name="AvatarImage"
-                   Aspect="AspectFit"
-                   Grid.Row="1" />
+            <Grid Grid.Row="1">
+                <Image x:Name="AvatarImage" Aspect="AspectFit" />
+                <Image x:Name="HeadImage" HorizontalOptions="Center" VerticalOptions="Start" WidthRequest="140" HeightRequest="140" Margin="4,-8,0,0" />
+                <Image x:Name="BootsImage" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="200" HeightRequest="200" />
+                <Image x:Name="LegsImage" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="350" HeightRequest="350" Margin="0,280,0,0"/>
+                <Image x:Name="TorsoImage" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="280" HeightRequest="280" Margin="4,-194,0,0"/>
+
+
+                <Image x:Name="FirstWeaponImage" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="300" HeightRequest="350" Margin="70,0,0,0"/>
+                <Image x:Name="SecondWeaponImage" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="140" HeightRequest="140" Margin="0,0,165,0"/>
+            </Grid>
 
             <VerticalStackLayout Grid.Row="2" Spacing="5" Padding="10">
                 <Grid Padding="0" RowSpacing="-5" BackgroundColor="Black">
@@ -65,7 +70,6 @@
             </VerticalStackLayout>
         </Grid>
 
-        <!-- Right column: Buttons and top-right stats -->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -94,11 +98,10 @@
                      HorizontalOptions="Center" />
             </HorizontalStackLayout>
             
-            <!-- Buttons -->
             <VerticalStackLayout Grid.Row="3" Spacing="10" HorizontalOptions="End" VerticalOptions="Center">
                 <Button Text="Магазин"      WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" Clicked="OnShopButtonClicked"/>
                 <Button Text="Прокачка"     WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
-                <Button Text="Инвентарь"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
+                <Button Text="Инвентарь"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" Clicked="OnInventoryButtonClicked"/>
                 <Button Text="Отдохнуть"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" x:Name="RestButton" Clicked="OnRestButtonClicked"/>
                 <Button Text="Фарм"         WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
                 <Button Text="Сюжет"        WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />

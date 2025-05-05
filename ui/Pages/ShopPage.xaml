@@ -37,24 +37,23 @@
         </Frame>
 
         <CollectionView x:Name="ShopItemsCollectionView"
-                        ItemsSource="{Binding ShopItems}"
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Margin="15,41,45,0">
+                ItemsSource="{Binding ShopItems}"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="15,45,45,0">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" Span="3" HorizontalItemSpacing="15"
-                                 VerticalItemSpacing="13"/>
+                         VerticalItemSpacing="0"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame BackgroundColor="Transparent" WidthRequest="168"
-                           HeightRequest="163">
+                   HeightRequest="195">
                         <StackLayout Orientation="Vertical">
-                            <Label Text="{Binding Name}" FontSize="16" />
-                            <Label Text="{Binding Price, StringFormat='Price: {0} gold'}" FontSize="16" />
+                            <Image Source="{Binding Path}" WidthRequest="111" HeightRequest="111" />
                             <Button Text="Купить" 
-                                    Command="{Binding BuyCommand, Source={x:Reference shopPage}}" 
-                                    CommandParameter="{Binding .}" />
+                            Command="{Binding BuyCommand, Source={x:Reference shopPage}}" 
+                            CommandParameter="{Binding .}" BackgroundColor="RosyBrown"/>
                         </StackLayout>
                     </Frame>
                 </DataTemplate>
