@@ -109,6 +109,16 @@ namespace lab2
 
             return Inventory.Remove(item);
         }
+        public bool UnequipItem(EquipmentType type)
+        {
+            Item item = Equipment.Unequip(type, this);
+            if (item != null)
+            {
+                Inventory.Add(item);
+                return true;
+            }
+            return false;
+        }
 
         internal void UpdateStats(Item item, int multiplier = 1)
         {

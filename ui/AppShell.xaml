@@ -35,5 +35,9 @@
         Title="Inventory"
         ContentTemplate="{DataTemplate local:InventoryPage}"
         Route="Inventory" />
+    <ShellContent
+        Title="Upgrade"
+        ContentTemplate="{DataTemplate local:UpgradePage}"
+        Route="Upgrade" />
 
 </Shell>

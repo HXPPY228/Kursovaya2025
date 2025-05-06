@@ -88,8 +88,13 @@ public partial class GamePage : ContentPage
     {
         await Shell.Current.GoToAsync("InventoryPage");
     }
+    private async void OnUpgradeButtonClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("UpgradePage");
+    }
     private void UpdateUI()
     {
-        RestButton.IsEnabled = GameState.Player.FullHP < GameState.Player.FullMaxHP;
+        RestButton.IsEnabled = GameState.Game.player.FullHP < GameState.Game.player.FullMaxHP;
+        UpgradeButton.IsEnabled = GameState.Game.player.Experience >= GameState.Game.player.Level*5;
     }
 }

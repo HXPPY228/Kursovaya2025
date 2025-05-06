@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ui.UpgradePage"
+             Title="Upgrade">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <VerticalStackLayout Padding="20" Spacing="15" Grid.Row="0">
+        <Label Text="Выберите характеристику для прокачки"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+        <Frame x:Name="RadioFrame" Padding="10" CornerRadius="10">
+            <VerticalStackLayout x:Name="RadioStack" Spacing="10">
+                <RadioButton Content="Сила" GroupName="Stats" Value="1" FontSize="18" />
+                <RadioButton Content="Ловкость" GroupName="Stats" Value="3" FontSize="18" />
+                <RadioButton Content="Скрытность" GroupName="Stats" Value="2" FontSize="18" />
+                <RadioButton Content="Харизма" GroupName="Stats" Value="4" FontSize="18" />
+            </VerticalStackLayout>
+        </Frame>
+        <Button Text="Прокачать"
+                Clicked="OnUpgradeButtonClicked"
+                WidthRequest="200"
+                HeightRequest="50"
+                CornerRadius="10"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                FontSize="18"
+                HorizontalOptions="Center" />
+            <Label x:Name="StatusLabel" FontSize="16" TextColor="#D32F2F" HorizontalOptions="Center" />
+            <Label Text="Сила: Увеличивает здоровье (+Сила) и урон (+Сила/2)." FontSize="16"/>
+            <Label Text="Ловкость: Увеличивает урон (+Ловкость/2), броню (+Ловкость) и скрытность (+Ловкость/2)." FontSize="16"/>
+            <Label Text="Скрытность: Позволяет выполнять скрытые убийства существ при достаточном уровне." FontSize="16"/>
+            <Label Text="Харизма: Увеличивает скидку при покупке предметов." FontSize="16"/>
+        </VerticalStackLayout>
+
+        <Button Text="Вернуться"
+                Clicked="OnBackButtonClicked"
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                Margin="10" />
+    </Grid>
+</ContentPage>

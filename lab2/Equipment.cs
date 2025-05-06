@@ -65,5 +65,42 @@ namespace lab2
             player.UpdateStats(item);
             return true;
         }
+        public Item Unequip(EquipmentType type, Player player)
+        {
+            Item item = null;
+            switch (type)
+            {
+                case EquipmentType.Head:
+                    item = Head;
+                    Head = null;
+                    break;
+                case EquipmentType.Torso:
+                    item = Torso;
+                    Torso = null;
+                    break;
+                case EquipmentType.Legs:
+                    item = Legs;
+                    Legs = null;
+                    break;
+                case EquipmentType.Boots:
+                    item = Boots;
+                    Boots = null;
+                    break;
+                case EquipmentType.FirstWeapon:
+                    item = FirstWeapon;
+                    FirstWeapon = null;
+                    break;
+                case EquipmentType.SecondWeapon:
+                    item = SecondWeapon;
+                    SecondWeapon = null;
+                    break;
+            }
+
+            if (item != null)
+            {
+                player.UpdateStats(item, -1);
+            }
+            return item;
+        }
     }
 }

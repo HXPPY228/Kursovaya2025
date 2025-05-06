@@ -100,7 +100,7 @@
             
             <VerticalStackLayout Grid.Row="3" Spacing="10" HorizontalOptions="End" VerticalOptions="Center">
                 <Button Text="Магазин"      WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" Clicked="OnShopButtonClicked"/>
-                <Button Text="Прокачка"     WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
+                <Button Text="Прокачка"     WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" x:Name="UpgradeButton" Clicked="OnUpgradeButtonClicked"/>
                 <Button Text="Инвентарь"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" Clicked="OnInventoryButtonClicked"/>
                 <Button Text="Отдохнуть"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" x:Name="RestButton" Clicked="OnRestButtonClicked"/>
                 <Button Text="Фарм"         WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />

@@ -19,45 +19,63 @@
         <Grid Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*" Padding="10">
             <Frame Grid.Column="0" HeightRequest="200" WidthRequest="200" Padding="5" CornerRadius="10" BackgroundColor="Gray">
                 <Image Source="{Binding EquippedItems[0].Path, FallbackValue=''}" 
-                       WidthRequest="190" HeightRequest="190" 
-                       Aspect="AspectFit" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center" />
+               WidthRequest="190" HeightRequest="190" 
+               Aspect="AspectFit" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Center" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnEquipmentSlotTapped" CommandParameter="Head" />
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Grid.Column="1" HeightRequest="200" WidthRequest="200" Padding="5" CornerRadius="10" BackgroundColor="Gray">
                 <Image Source="{Binding EquippedItems[1].Path, FallbackValue=''}" 
-                       WidthRequest="190" HeightRequest="190" 
-                       Aspect="AspectFit" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center" />
+               WidthRequest="190" HeightRequest="190" 
+               Aspect="AspectFit" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Center" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnEquipmentSlotTapped" CommandParameter="Torso" />
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Grid.Column="2" HeightRequest="200" WidthRequest="200" Padding="5" CornerRadius="10" BackgroundColor="Gray">
                 <Image Source="{Binding EquippedItems[2].Path, FallbackValue=''}" 
-                       WidthRequest="190" HeightRequest="190" 
-                       Aspect="AspectFit" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center" />
+               WidthRequest="190" HeightRequest="190" 
+               Aspect="AspectFit" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Center" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnEquipmentSlotTapped" CommandParameter="Legs" />
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Grid.Column="3" HeightRequest="200" WidthRequest="200" Padding="5" CornerRadius="10" BackgroundColor="Gray">
                 <Image Source="{Binding EquippedItems[3].Path, FallbackValue=''}" 
-                       WidthRequest="190" HeightRequest="190" 
-                       Aspect="AspectFit" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center" />
+               WidthRequest="190" HeightRequest="190" 
+               Aspect="AspectFit" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Center" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnEquipmentSlotTapped" CommandParameter="Boots" />
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Grid.Column="4" HeightRequest="200" WidthRequest="200" Padding="5" CornerRadius="10" BackgroundColor="Gray">
                 <Image Source="{Binding EquippedItems[4].Path, FallbackValue=''}" 
-                       WidthRequest="190" HeightRequest="190" 
-                       Aspect="AspectFit" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center" />
+               WidthRequest="190" HeightRequest="190" 
+               Aspect="AspectFit" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Center" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnEquipmentSlotTapped" CommandParameter="FirstWeapon" />
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Grid.Column="5" HeightRequest="200" WidthRequest="200" Padding="5" CornerRadius="10" BackgroundColor="Gray">
                 <Image Source="{Binding EquippedItems[5].Path, FallbackValue=''}" 
-                       WidthRequest="190" HeightRequest="190" 
-                       Aspect="AspectFit" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center" />
+               WidthRequest="190" HeightRequest="190" 
+               Aspect="AspectFit" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Center" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnEquipmentSlotTapped" CommandParameter="SecondWeapon" />
+                </Frame.GestureRecognizers>
             </Frame>
         </Grid>
 

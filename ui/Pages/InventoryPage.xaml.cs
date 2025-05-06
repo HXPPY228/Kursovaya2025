@@ -1,4 +1,5 @@
 using lab2;
+using lab2.Enums;
 using System.Collections.ObjectModel;
 
 namespace ui;
@@ -54,7 +55,23 @@ public partial class InventoryPage : ContentPage
         EquippedItems = newEquippedItems;
         OnPropertyChanged(nameof(EquippedItems));
     }
-
+    private async void OnEquipmentSlotTapped(object sender, EventArgs e)
+    {
+        if (sender is Frame frame && frame.GestureRecognizers[0] is TapGestureRecognizer tapGesture)
+        {
+            string slotType = tapGesture.CommandParameter.ToString();
+            EquipmentType equipmentType = Enum.Parse<EquipmentType>(slotType);
+            bool unequipped = GameState.Game.player.UnequipItem(equipmentType);
+            if (unequipped)
+            {
+                UpdateItems();
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Этот слот пуст.", "OK");
+            }
+        }
+    }
     private void OnBackButtonClicked(object sender, EventArgs e)
     {
         Shell.Current.GoToAsync(nameof(GamePage));
