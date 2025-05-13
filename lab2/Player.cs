@@ -4,6 +4,7 @@ using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace lab2
@@ -20,7 +21,8 @@ namespace lab2
         public int Stealth { get; set; }
         public int Agility { get; set; }
         public int Charisma { get; set; }
-        public Equipment Equipment { get; private set; }
+        [JsonInclude]
+        public Equipment Equipment { get; set; }
         public List<Item> Inventory { get; set; }
 
         public int AddedHP { get; private set; }

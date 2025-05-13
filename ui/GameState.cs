@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using lab2;
+using lab3;
 
 namespace ui
 {
@@ -84,5 +85,32 @@ namespace ui
             return $"{baseName}.png";
         }
 
+        public static GameSaveData CreateSaveData()
+        {
+            return new GameSaveData
+            {
+                Player = Player,
+                Shop = Shop,
+                StoryScenes = StoryScenes,
+                CurrentSceneIndex = CurrentSceneIndex
+            };
+        }
+
+        public static void LoadSaveData(GameSaveData saveData)
+        {
+            Player = saveData.Player;
+
+            var w1 = Player.Equipment.FirstWeapon;
+            var w2 = Player.Equipment.SecondWeapon;
+            Player.Equipment.Unequip((lab2.Enums.EquipmentType)4, Player);
+            Player.Equipment.Unequip((lab2.Enums.EquipmentType)5, Player);
+            Player.Equipment.Equip(w1, Player);
+            Player.Equipment.Equip(w2, Player);
+
+            Shop = saveData.Shop;
+            StoryScenes = saveData.StoryScenes;
+            CurrentSceneIndex = saveData.CurrentSceneIndex;
+            Game = new GameWindow(Player, Shop);
+        }
     }
 }

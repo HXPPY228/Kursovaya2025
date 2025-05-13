@@ -28,7 +28,7 @@ public partial class StoryPage : ContentPage
 
     private void OnStoryTextTapped(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync(nameof(GamePage));
+        //Shell.Current.GoToAsync(nameof(GamePage));
 
         GameState.CurrentSceneIndex++;
         if (GameState.CurrentSceneIndex == 11)
