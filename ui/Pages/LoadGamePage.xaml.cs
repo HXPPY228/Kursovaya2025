@@ -1,3 +1,6 @@
+using lab3;
+using Microsoft.Maui.Storage;
+
 namespace ui;
 
 public partial class LoadGamePage : ContentPage
@@ -16,8 +19,12 @@ public partial class LoadGamePage : ContentPage
             await DisplayAlert("Ошибка", "Выберите действительное сохранение.", "OK");
             return;
         }
-        // Логика для загрузки выбранного сохранения
-        //await Shell.Current.GoToAsync("//GamePage");
+        selectedSave += ".sav";
+        string filePath = Path.Combine(AppContext.BaseDirectory, "Saves", selectedSave);
+        GameSaveData saveData = GameSerializer.LoadGame(filePath);
+        GameState.LoadSaveData(saveData);
+
+        await Shell.Current.GoToAsync(nameof(GamePage));
     }
     private void LoadSaves()
     {

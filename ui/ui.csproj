@@ -69,6 +69,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Reference Include="lab3">
+			<HintPath>..\lab3\bin\Debug\net8.0\lab3.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Pages\CharacterCreationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

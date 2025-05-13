@@ -105,7 +105,7 @@
                 <Button Text="Отдохнуть"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" x:Name="RestButton" Clicked="OnRestButtonClicked"/>
                 <Button Text="Фарм"         WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
                 <Button Text="Сюжет"        WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
-                <Button Text="Сохранить"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#777" TextColor="White" />
+                <Button Text="Сохранить"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#777" TextColor="White" Clicked="OnSaveButtonClicked"/>
             </VerticalStackLayout>
         </Grid>
     </Grid>

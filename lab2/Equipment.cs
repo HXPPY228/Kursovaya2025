@@ -14,8 +14,8 @@ namespace lab2
         public Item Torso { get; set; }
         public Item Legs { get; set; }
         public Item Boots { get; set; }
-        public Weapon FirstWeapon { get; set; }
-        public Weapon SecondWeapon { get; set; }
+        public Item FirstWeapon { get; set; }
+        public Item SecondWeapon { get; set; }
 
         public List<Item> GetAll()
         {
@@ -32,6 +32,10 @@ namespace lab2
 
         public bool Equip(Item item, Player player)
         {
+            if (item == null)
+            {
+                return false;
+            }
             switch (item.Type)
             {
                 case EquipmentType.Head:
@@ -51,12 +55,12 @@ namespace lab2
                     Boots = item;
                     break;
                 case EquipmentType.FirstWeapon:
-                    if (!(item is Weapon w1) || FirstWeapon != null) return false;
-                    FirstWeapon = w1;
+                    if (FirstWeapon != null) return false;
+                    FirstWeapon = item;
                     break;
                 case EquipmentType.SecondWeapon:
-                    if (!(item is Weapon w2) || SecondWeapon != null) return false;
-                    SecondWeapon = w2;
+                    if (SecondWeapon != null) return false;
+                    SecondWeapon = item;
                     break;
                 default:
                     return false;

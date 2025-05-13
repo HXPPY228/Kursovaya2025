@@ -1,4 +1,5 @@
 using lab2;
+using lab3;
 
 namespace ui;
 
@@ -13,7 +14,7 @@ public partial class GamePage : ContentPage
 
         AvatarImage.Source = avatarSource;
         NickLabel.Text = GameState.Game.player.Name;
-        //GameState.Player.Gold = 30;
+
         UpdateStats();
         LoadCoinGif();
     }
@@ -91,6 +92,14 @@ public partial class GamePage : ContentPage
     private async void OnUpgradeButtonClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("UpgradePage");
+    }
+    private async void OnSaveButtonClicked(object sender, EventArgs e)
+    {
+        string fileName = $"save_{DateTime.Now:yyyyMMdd_HHmmss}.sav";
+        string filePath = Path.Combine(AppContext.BaseDirectory, "Saves" ,fileName);
+        GameSaveData saveData = GameState.CreateSaveData();
+        GameSerializer.SaveGame(saveData, filePath);
+        await DisplayAlert("Успех", "Игра сохранена!", "OK");
     }
     private void UpdateUI()
     {
