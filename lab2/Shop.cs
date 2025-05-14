@@ -17,14 +17,27 @@ namespace lab2
         {
             shopItems = new List<Item>
             {
-                new Item("Leather Helmet", new Dictionary<string, int> { { "HP", 5 }, { "Armor", 1 } }, 10, EquipmentType.Head, "leather_helmet.png"),
-                new Item("Bronze Helmet", new Dictionary<string, int> { { "HP", 10 }, { "Armor", 2 } }, 20, EquipmentType.Head, "bronze_helmet.png"),
-                new Item("Chainmail Torso", new Dictionary<string, int> { { "HP", 10 }, { "Armor", 3 } }, 20, EquipmentType.Torso, "chainmail_torso.png"),
-                new Item("Leather Pants", new Dictionary<string, int> { { "HP", 7 }, { "Armor", 2 } }, 15, EquipmentType.Legs, "leather_pants.png"),
-                new Item("Traveler's Boots", new Dictionary<string, int> { { "HP", 3 }, { "Armor", 1 } }, 8, EquipmentType.Boots, "travelers_boots.png"),
-                new Item("Wood Sword", new Dictionary<string, int> { { "DMG", 5 } }, 15, EquipmentType.FirstWeapon, "wood_sword.png"),
-                new Item("Wood Dagger", new Dictionary<string, int> { { "DMG", 1 },{ "Stealth", 3 } }, 10, EquipmentType.SecondWeapon, "wood_dagger.png")
+                //new Item("Leather Helmet", new Dictionary<string, int> { { "HP", 5 }, { "Armor", 1 } }, 10, EquipmentType.Head, "leather_helmet.png"),
+                //new Item("Bronze Helmet", new Dictionary<string, int> { { "HP", 10 }, { "Armor", 2 } }, 20, EquipmentType.Head, "bronze_helmet.png"),
+                //new Item("Chainmail Torso", new Dictionary<string, int> { { "HP", 10 }, { "Armor", 3 } }, 20, EquipmentType.Torso, "chainmail_torso.png"),
+                //new Item("Leather Pants", new Dictionary<string, int> { { "HP", 7 }, { "Armor", 2 } }, 15, EquipmentType.Legs, "leather_pants.png"),
+                //new Item("Traveler's Boots", new Dictionary<string, int> { { "HP", 3 }, { "Armor", 1 } }, 8, EquipmentType.Boots, "travelers_boots.png"),
+                //new Item("Wood Sword", new Dictionary<string, int> { { "DMG", 5 } }, 15, EquipmentType.FirstWeapon, "wood_sword.png"),
+                //new Item("Wood Dagger", new Dictionary<string, int> { { "DMG", 1 },{ "Stealth", 3 } }, 10, EquipmentType.SecondWeapon, "wood_dagger.png")
             };
+        }
+        public void AddShopItems(List<Item> items)
+        {
+            if (items == null || items.Count == 0)
+                return;
+
+            foreach (Item item in items)
+            {
+                if (item != null)
+                {
+                    shopItems.Add(item);
+                }
+            }
         }
 
         public List<Item> GetShopItems()

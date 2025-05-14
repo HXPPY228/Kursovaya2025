@@ -1,4 +1,5 @@
 using lab2;
+using lab3;
 using Microsoft.Maui.Controls;
 
 namespace ui;
@@ -40,6 +41,8 @@ public partial class CharacterCreationPage : ContentPage
 
         GameState.Player = new Player(name, gender);
         GameState.Shop = new Shop();
+        string xmlPath = Path.Combine(AppContext.BaseDirectory, "BasicShopItems.xml");
+        GameState.Shop.AddShopItems(ShopItemLoader.LoadItemsFromXml(xmlPath));
 
         await Shell.Current.GoToAsync(nameof(StoryPage));
     }

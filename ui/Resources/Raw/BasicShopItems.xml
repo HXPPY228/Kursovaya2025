@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item>
+    <Name>Leather Helmet</Name>
+    <Stats>
+      <Stat key="HP" value="5" />
+      <Stat key="Armor" value="1" />
+    </Stats>
+    <Price>10</Price>
+    <Type>Head</Type>
+    <Image>leather_helmet.png</Image>
+  </Item>
+
+  <Item>
+    <Name>Bronze Helmet</Name>
+    <Stats>
+      <Stat key="HP" value="10" />
+      <Stat key="Armor" value="2" />
+    </Stats>
+    <Price>20</Price>
+    <Type>Head</Type>
+    <Image>bronze_helmet.png</Image>
+  </Item>
+
+  <Item>
+    <Name>Chainmail Torso</Name>
+    <Stats>
+      <Stat key="HP" value="10" />
+      <Stat key="Armor" value="3" />
+    </Stats>
+    <Price>20</Price>
+    <Type>Torso</Type>
+    <Image>chainmail_torso.png</Image>
+  </Item>
+
+  <Item>
+    <Name>Leather Pants</Name>
+    <Stats>
+      <Stat key="HP" value="7" />
+      <Stat key="Armor" value="2" />
+    </Stats>
+    <Price>15</Price>
+    <Type>Legs</Type>
+    <Image>leather_pants.png</Image>
+  </Item>
+
+  <Item>
+    <Name>Traveler's Boots</Name>
+    <Stats>
+      <Stat key="HP" value="3" />
+      <Stat key="Armor" value="1" />
+    </Stats>
+    <Price>8</Price>
+    <Type>Boots</Type>
+    <Image>travelers_boots.png</Image>
+  </Item>
+
+  <Item>
+    <Name>Wood Sword</Name>
+    <Stats>
+      <Stat key="DMG" value="5" />
+    </Stats>
+    <Price>15</Price>
+    <Type>FirstWeapon</Type>
+    <Image>wood_sword.png</Image>
+  </Item>
+
+  <Item>
+    <Name>Wood Dagger</Name>
+    <Stats>
+      <Stat key="DMG" value="1" />
+      <Stat key="Stealth" value="3" />
+    </Stats>
+    <Price>10</Price>
+    <Type>SecondWeapon</Type>
+    <Image>wood_dagger.png</Image>
+  </Item>
+</Items>

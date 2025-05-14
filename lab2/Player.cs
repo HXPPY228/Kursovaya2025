@@ -36,6 +36,14 @@ namespace lab2
         public int FullArmor => (Armor + Agility) + AddedArmor;
         public int FullStealth => (Stealth + (Agility / 2)) + AddedStealth;
 
+        public void ClearAddedStats()
+        {
+            AddedHP = 0;
+            AddedDMG = 0;
+            AddedArmor = 0;
+            AddedStealth = 0;
+        }
+
         public Player(string name, bool gender)
         {
             Name = name;
@@ -122,7 +130,7 @@ namespace lab2
             return false;
         }
 
-        internal void UpdateStats(Item item, int multiplier = 1)
+        public void UpdateStats(Item item, int multiplier = 1)
         {
             if (item.Stats.ContainsKey("HP"))
                 AddedHP += item.Stats["HP"] * multiplier;

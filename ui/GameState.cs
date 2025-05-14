@@ -99,17 +99,16 @@ namespace ui
         public static void LoadSaveData(GameSaveData saveData)
         {
             Player = saveData.Player;
-
-            var w1 = Player.Equipment.FirstWeapon;
-            var w2 = Player.Equipment.SecondWeapon;
-            Player.Equipment.Unequip((lab2.Enums.EquipmentType)4, Player);
-            Player.Equipment.Unequip((lab2.Enums.EquipmentType)5, Player);
-            Player.Equipment.Equip(w1, Player);
-            Player.Equipment.Equip(w2, Player);
-
             Shop = saveData.Shop;
             StoryScenes = saveData.StoryScenes;
             CurrentSceneIndex = saveData.CurrentSceneIndex;
+
+            Player.ClearAddedStats();
+            foreach (var itm in Player.Equipment.GetAll().Where(i => i != null))
+            {
+                Player.UpdateStats(itm);
+            }
+
             Game = new GameWindow(Player, Shop);
         }
     }

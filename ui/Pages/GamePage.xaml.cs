@@ -96,7 +96,7 @@ public partial class GamePage : ContentPage
     private async void OnSaveButtonClicked(object sender, EventArgs e)
     {
         string fileName = $"save_{DateTime.Now:yyyyMMdd_HHmmss}.sav";
-        string filePath = Path.Combine(AppContext.BaseDirectory, "Saves" ,fileName);
+        string filePath = Path.Combine(AppContext.BaseDirectory, fileName);
         GameSaveData saveData = GameState.CreateSaveData();
         GameSerializer.SaveGame(saveData, filePath);
         await DisplayAlert("Успех", "Игра сохранена!", "OK");

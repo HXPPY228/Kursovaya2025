@@ -98,10 +98,4 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup>
-		<None Update="Saves\**\*.sav">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-
 </Project>

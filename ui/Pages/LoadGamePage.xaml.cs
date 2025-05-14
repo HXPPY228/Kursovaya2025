@@ -20,7 +20,7 @@ public partial class LoadGamePage : ContentPage
             return;
         }
         selectedSave += ".sav";
-        string filePath = Path.Combine(AppContext.BaseDirectory, "Saves", selectedSave);
+        string filePath = Path.Combine(AppContext.BaseDirectory, selectedSave);
         GameSaveData saveData = GameSerializer.LoadGame(filePath);
         GameState.LoadSaveData(saveData);
 
@@ -28,7 +28,7 @@ public partial class LoadGamePage : ContentPage
     }
     private void LoadSaves()
     {
-        string savesDirectory = Path.Combine(AppContext.BaseDirectory, "Saves");
+        string savesDirectory = Path.Combine(AppContext.BaseDirectory);
         if (Directory.Exists(savesDirectory))
         {
             string[] saveFiles = Directory.GetFiles(savesDirectory, "*.sav");
