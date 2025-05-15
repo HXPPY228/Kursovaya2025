@@ -55,7 +55,7 @@ public partial class ShopPage : ContentPage
     private async void OnBuyItem(Item item)
     {
         int charisma = GameState.Game.player.Charisma;
-        int discountedPrice = item.Price - (charisma / 2);
+        int discountedPrice = item.Price - (charisma / 4);
 
         StringBuilder buffs = new StringBuilder();
         foreach (var stat in item.Stats)
@@ -65,7 +65,7 @@ public partial class ShopPage : ContentPage
         }
         string buffsString = $"Бафы: {buffs}";
 
-        string message = $"Вы хотите купить {item.Name} за {discountedPrice} золота? (Скидка {charisma / 2} золота за Харизму)\n{buffsString}";
+        string message = $"Вы хотите купить {item.Name} за {discountedPrice} золота? (Скидка {charisma / 4} золота за Харизму)\n{buffsString}";
         bool answer = await DisplayAlert("Покупка", message, "Да", "Нет");
 
         if (answer)

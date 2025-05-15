@@ -14,6 +14,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*" Padding="10">
@@ -102,6 +103,12 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Grid.Row="2" Text="Вернуться" Clicked="OnBackButtonClicked" HorizontalOptions="Center" Margin="10" />
+        <StackLayout Grid.Row="2" Orientation="Horizontal" 
+                 Padding="10" Spacing="10" VerticalOptions="Center" HorizontalOptions="Center" Margin="55,0,0,0">
+            <Label Text="Режим продажи" VerticalOptions="Center" />
+            <Switch x:Name="SellModeSwitch" Toggled="OnSellModeToggled"/>
+        </StackLayout>
+
+        <Button Grid.Row="3" Text="Вернуться" Clicked="OnBackButtonClicked" HorizontalOptions="Center" Margin="10" />
     </Grid>
 </ContentPage>

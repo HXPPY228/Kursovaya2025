@@ -148,5 +148,18 @@ namespace lab2
                 return;
             HP = MaxHP;
         }
+        public bool SellItem(Item item, Shop shop)
+        {
+            if (!Inventory.Contains(item))
+                return false;
+
+            int sellPrice = (item.Price / 2) + (Charisma / 4);
+            Gold += sellPrice;
+
+            Inventory.Remove(item);
+            shop.AddShopItems(new List<Item> { item });
+
+            return true;
+        }
     }
 }
