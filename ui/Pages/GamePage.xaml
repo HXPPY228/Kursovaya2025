@@ -103,8 +103,8 @@
                 <Button Text="Прокачка"     WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" x:Name="UpgradeButton" Clicked="OnUpgradeButtonClicked"/>
                 <Button Text="Инвентарь"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" Clicked="OnInventoryButtonClicked"/>
                 <Button Text="Отдохнуть"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" x:Name="RestButton" Clicked="OnRestButtonClicked"/>
-                <Button Text="Фарм"         WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
-                <Button Text="Сюжет"        WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" />
+                <Button Text="Фарм"         WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" Clicked="OnFarmClicked"/>
+                <Button Text="Сюжет"        WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#555" TextColor="White" Clicked="OnStoryClicked"/>
                 <Button Text="Сохранить"    WidthRequest="400" HeightRequest="45" CornerRadius="8" BackgroundColor="#777" TextColor="White" Clicked="OnSaveButtonClicked"/>
             </VerticalStackLayout>
         </Grid>

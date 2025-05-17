@@ -9,7 +9,7 @@ public partial class GamePage : ContentPage
     {
         InitializeComponent();
 
-        GameState.Game = new GameWindow(GameState.Player, GameState.Shop);
+        GameState.Game = new GameWindow(GameState.Player, GameState.StoryProgress, GameState.Shop);
         string avatarSource = GameState.Game.player.Gender ? "avatar_male.png" : "avatar_female.png";
 
         AvatarImage.Source = avatarSource;
@@ -72,9 +72,9 @@ public partial class GamePage : ContentPage
     }
     private void OnRestButtonClicked(object sender, EventArgs e)
     {
-        if (GameState.Game.SpendGold(5 * GameState.Game.player.Level)){
+        if (GameState.Game.SpendGold(5 * GameState.Game.player.Level - GameState.Game.player.Charisma/4)){
             int healthRestored = GameState.Game.Rest();
-            DisplayAlert("Отдых", $"Восстановлено здоровья: {healthRestored}.\nЗолото потраченное на ночлег: {5 * GameState.Game.player.Level}.", "OK");
+            DisplayAlert("Отдых", $"Восстановлено здоровья: {healthRestored}.\nЗолото потраченное на ночлег: {5 * GameState.Game.player.Level - GameState.Game.player.Charisma / 4} (Со скидкой за харизму).", "OK");
             UpdateStats();
         } else
         {
@@ -101,6 +101,21 @@ public partial class GamePage : ContentPage
         GameSerializer.SaveGame(saveData, filePath);
         await DisplayAlert("Успех", "Игра сохранена!", "OK");
     }
+    private async void OnFarmClicked(object sender, EventArgs e)
+    {
+        GameState.CurrentEnemy = GameState.Game.StartFarm();
+        GameState.IsStoryBattle = false;
+        await Shell.Current.GoToAsync("FightPage");
+    }
+
+    private async void OnStoryClicked(object sender, EventArgs e)
+    {
+        GameState.CurrentEnemy = GameState.StoryProgress.GetCurrentEnemy();
+        GameState.IsStoryBattle = true;
+        await Shell.Current.GoToAsync("FightPage");
+    }
+
+
     private void UpdateUI()
     {
         RestButton.IsEnabled = GameState.Game.player.FullHP < GameState.Game.player.FullMaxHP;

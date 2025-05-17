@@ -12,8 +12,8 @@ namespace lab2
         public int Experience { get; set; }
         public int Gold { get; set; }
         public string Name { get; set; }
-
-        public Enemy(string name, int hp, int armor, int dmg, int lvl_to_sk, int experience, int gold)
+        public string Path { get; set; }
+        public Enemy(string name, int hp, int armor, int dmg, int lvl_to_sk, int experience, int gold, string path)
         {
             Name = name;
             HP = hp;
@@ -22,6 +22,7 @@ namespace lab2
             LVL_to_sk = lvl_to_sk;
             Experience = experience;
             Gold = gold;
+            Path = path;
         }
     }
 }

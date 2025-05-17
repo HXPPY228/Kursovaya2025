@@ -14,6 +14,7 @@
             Routing.RegisterRoute("ShopPage", typeof(ShopPage));
             Routing.RegisterRoute("InventoryPage", typeof(InventoryPage));
             Routing.RegisterRoute("UpgradePage", typeof(UpgradePage));
+            Routing.RegisterRoute("FightPage", typeof(FightPage));
         }
     }
 }

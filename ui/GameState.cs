@@ -12,6 +12,9 @@ namespace ui
     {
         public static Player Player { get; set; }
         public static GameWindow Game { get; set; }
+        public static StoryProgress StoryProgress { get; set; }
+        public static Enemy CurrentEnemy { get; set; }
+        public static bool IsStoryBattle { get; set; }
         public static Shop Shop { get; set; }
         public static List<(string Text, string ImagePath)> StoryScenes { get; private set; }
         public static int CurrentSceneIndex { get; set; } = 0;
@@ -90,6 +93,7 @@ namespace ui
             return new GameSaveData
             {
                 Player = Player,
+                StoryProgress = StoryProgress,
                 Shop = Shop,
                 StoryScenes = StoryScenes,
                 CurrentSceneIndex = CurrentSceneIndex
@@ -99,6 +103,7 @@ namespace ui
         public static void LoadSaveData(GameSaveData saveData)
         {
             Player = saveData.Player;
+            StoryProgress = saveData.StoryProgress;
             Shop = saveData.Shop;
             StoryScenes = saveData.StoryScenes;
             CurrentSceneIndex = saveData.CurrentSceneIndex;
@@ -109,7 +114,18 @@ namespace ui
                 Player.UpdateStats(itm);
             }
 
-            Game = new GameWindow(Player, Shop);
+            Game = new GameWindow(Player, StoryProgress, Shop);
+        }
+        public static void Reset()
+        {
+            Player = null!;
+            Game = null!;
+            StoryProgress = null!;
+            CurrentEnemy = null!;
+            IsStoryBattle = false;
+            Shop = null!;
+            StoryScenes = new List<(string, string)>();
+            CurrentSceneIndex = 0;
         }
     }
 }

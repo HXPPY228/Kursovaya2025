@@ -41,6 +41,8 @@ public partial class CharacterCreationPage : ContentPage
 
         GameState.Player = new Player(name, gender);
         GameState.Shop = new Shop();
+        GameState.StoryProgress = new StoryProgress();
+
         string xmlPath = Path.Combine(AppContext.BaseDirectory, "BasicShopItems.xml");
         GameState.Shop.AddShopItems(ShopItemLoader.LoadItemsFromXml(xmlPath));
 
