@@ -31,10 +31,10 @@
 
             <Button
                 x:Name ="b1"
-                Text="Скрытно зарезать"
+                Text="Скрытно убить"
                 Command="{Binding StealthCommand}" />
 
-            <Button x:Name ="b2" Text="Вернуться" Clicked="OnBackButtonClicked" />
+            <Button x:Name ="b2" Text="Уйти" Clicked="OnBackButtonClicked" />
         </HorizontalStackLayout>
 
     </VerticalStackLayout>

@@ -21,8 +21,7 @@ public partial class StoryPage : ContentPage
         }
         else
         {
-            StoryText.Text = "Конец сюжета.";
-            StoryImage.Source = null;
+            Application.Current.Quit();
         }
     }
 

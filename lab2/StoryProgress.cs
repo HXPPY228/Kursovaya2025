@@ -24,7 +24,7 @@ namespace lab2
                 1 => factory.CreateEnemy("miniboss2"),
                 2 => factory.CreateEnemy("miniboss3"),
                 3 => factory.CreateEnemy("finalboss"),
-                _ => throw new NotImplementedException(), // ИГРА ПРОЙДЕНА!
+                _ => null!
             };
         }
         public void NextStory(Player player)

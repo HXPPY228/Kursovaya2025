@@ -72,9 +72,9 @@ public partial class GamePage : ContentPage
     }
     private void OnRestButtonClicked(object sender, EventArgs e)
     {
-        if (GameState.Game.SpendGold(5 * GameState.Game.player.Level - GameState.Game.player.Charisma/4)){
+        if (GameState.Game.SpendGold(5 * GameState.Game.player.Level - GameState.Game.player.Charisma)){
             int healthRestored = GameState.Game.Rest();
-            DisplayAlert("Отдых", $"Восстановлено здоровья: {healthRestored}.\nЗолото потраченное на ночлег: {5 * GameState.Game.player.Level - GameState.Game.player.Charisma / 4} (Со скидкой за харизму).", "OK");
+            DisplayAlert("Отдых", $"Восстановлено здоровья: {healthRestored}.\nЗолото потраченное на ночлег: {4 * GameState.Game.player.Level - GameState.Game.player.Charisma} (Со скидкой за харизму {GameState.Game.player.Charisma}).", "OK");
             UpdateStats();
         } else
         {
@@ -110,6 +110,11 @@ public partial class GamePage : ContentPage
 
     private async void OnStoryClicked(object sender, EventArgs e)
     {
+        if (GameState.StoryProgress.GetCurrentEnemy() == null)
+        {
+            await Shell.Current.GoToAsync(nameof(StoryPage));
+            return;
+        }
         GameState.CurrentEnemy = GameState.StoryProgress.GetCurrentEnemy();
         GameState.IsStoryBattle = true;
         await Shell.Current.GoToAsync("FightPage");

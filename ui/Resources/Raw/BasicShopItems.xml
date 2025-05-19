@@ -5,6 +5,7 @@
     <Stats>
       <Stat key="HP" value="5" />
       <Stat key="Armor" value="1" />
+	  <Stat key="Stealth" value="2" />
     </Stats>
     <Price>10</Price>
     <Type>Head</Type>
@@ -49,6 +50,7 @@
     <Stats>
       <Stat key="HP" value="3" />
       <Stat key="Armor" value="1" />
+	  <Stat key="Stealth" value="1" />
     </Stats>
     <Price>8</Price>
     <Type>Boots</Type>
@@ -69,7 +71,7 @@
     <Name>Wood Dagger</Name>
     <Stats>
       <Stat key="DMG" value="1" />
-      <Stat key="Stealth" value="3" />
+      <Stat key="Stealth" value="2" />
     </Stats>
     <Price>10</Price>
     <Type>SecondWeapon</Type>

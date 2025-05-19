@@ -38,7 +38,7 @@ public partial class InventoryPage : ContentPage
         {
             bool confirm = await DisplayAlert(
                 "Продажа",
-                $"Продать {selectedItem.Name} за {(selectedItem.Price / 2 + GameState.Game.player.Charisma / 4)} (50% от стоимости предмета + бонус за харизму) золота?",
+                $"Продать {selectedItem.Name} за {(selectedItem.Price / 2 + GameState.Game.player.Charisma / 3)} (50% от стоимости предмета + бонус за харизму) золота?",
                 "Да", "Нет"
             );
             if (!confirm)

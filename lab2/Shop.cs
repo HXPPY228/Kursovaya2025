@@ -39,7 +39,7 @@ namespace lab2
         {
             if (shopItems.Contains(item))
             {
-                int discountedPrice = item.Price - (player.Charisma / 4);
+                int discountedPrice = item.Price - (player.Charisma / 3);
                 if (player.Gold >= discountedPrice)
                 {
                     player.Gold -= discountedPrice;

@@ -5,6 +5,7 @@
 		<Stats>
 			<Stat key="HP" value="15" />
 			<Stat key="Armor" value="3" />
+			<Stat key="Stealth" value="4" />
 		</Stats>
 		<Price>30</Price>
 		<Type>Head</Type>
@@ -38,6 +39,7 @@
 		<Stats>
 			<Stat key="HP" value="9" />
 			<Stat key="Armor" value="3" />
+			<Stat key="Stealth" value="2" />
 		</Stats>
 		<Price>24</Price>
 		<Type>Boots</Type>
@@ -58,7 +60,7 @@
 		<Name>Bayonet Knife</Name>
 		<Stats>
 			<Stat key="DMG" value="3" />
-			<Stat key="Stealth" value="9" />
+			<Stat key="Stealth" value="6" />
 		</Stats>
 		<Price>30</Price>
 		<Type>SecondWeapon</Type>

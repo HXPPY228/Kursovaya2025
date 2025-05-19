@@ -53,12 +53,12 @@ namespace lab2
             Armor = 0;
             DMG = 5;
             Level = 1;
-            Experience = 100;
-            Gold = 100;
-            Strength = 5;
-            Stealth = 5;
-            Agility = 5;
-            Charisma = 5;
+            Experience = 0;
+            Gold = 0;
+            Strength = 3;
+            Stealth = 1;
+            Agility = 3;
+            Charisma = 3;
             AddedHP = 0;
             AddedDMG = 0;
             AddedArmor = 0;
@@ -153,7 +153,7 @@ namespace lab2
             if (!Inventory.Contains(item))
                 return false;
 
-            int sellPrice = (item.Price / 2) + (Charisma / 4);
+            int sellPrice = (item.Price / 2) + (Charisma / 3);
             Gold += sellPrice;
 
             Inventory.Remove(item);
