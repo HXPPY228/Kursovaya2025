@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+	<Item>
+		<Name>Military Helmet</Name>
+		<Stats>
+			<Stat key="HP" value="15" />
+			<Stat key="Armor" value="3" />
+		</Stats>
+		<Price>30</Price>
+		<Type>Head</Type>
+		<Image>m_helmet.png</Image>
+	</Item>
+	
+	<Item>
+		<Name>Military Jacket</Name>
+		<Stats>
+			<Stat key="HP" value="30" />
+			<Stat key="Armor" value="9" />
+		</Stats>
+		<Price>60</Price>
+		<Type>Torso</Type>
+		<Image>m_jacket.png</Image>
+	</Item>
+	
+	<Item>
+		<Name>Military Pants</Name>
+		<Stats>
+			<Stat key="HP" value="21" />
+			<Stat key="Armor" value="6" />
+		</Stats>
+		<Price>45</Price>
+		<Type>Legs</Type>
+		<Image>m_pants.png</Image>
+	</Item>
+	
+	<Item>
+		<Name>Military Boots</Name>
+		<Stats>
+			<Stat key="HP" value="9" />
+			<Stat key="Armor" value="3" />
+		</Stats>
+		<Price>24</Price>
+		<Type>Boots</Type>
+		<Image>m_boots.png</Image>
+	</Item>
+	
+	<Item>
+		<Name>AK-12</Name>
+		<Stats>
+			<Stat key="DMG" value="15" />
+		</Stats>
+		<Price>45</Price>
+		<Type>FirstWeapon</Type>
+		<Image>ak12.png</Image>
+	</Item>
+	
+	<Item>
+		<Name>Bayonet Knife</Name>
+		<Stats>
+			<Stat key="DMG" value="3" />
+			<Stat key="Stealth" value="9" />
+		</Stats>
+		<Price>30</Price>
+		<Type>SecondWeapon</Type>
+		<Image>bayonet.png</Image>
+	</Item>
+</Items>

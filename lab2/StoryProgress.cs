@@ -21,7 +21,9 @@ namespace lab2
             return CompletedEnemies switch
             {
                 0 => factory.CreateEnemy("miniboss1"),
-                1 => factory.CreateEnemy("finalboss"),
+                1 => factory.CreateEnemy("miniboss2"),
+                2 => factory.CreateEnemy("miniboss3"),
+                3 => factory.CreateEnemy("finalboss"),
                 _ => throw new NotImplementedException(), // ИГРА ПРОЙДЕНА!
             };
         }

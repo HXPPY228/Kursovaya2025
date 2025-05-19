@@ -26,12 +26,15 @@
         <!-- Кнопки действий -->
         <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
             <Button
-        Text="Атаковать"
-        Command="{Binding AttackCommand}" />
+                Text="Атаковать"
+                Command="{Binding AttackCommand}" />
 
             <Button
-        Text="Скрытно зарезать"
-        Command="{Binding StealthCommand}" />
+                x:Name ="b1"
+                Text="Скрытно зарезать"
+                Command="{Binding StealthCommand}" />
+
+            <Button x:Name ="b2" Text="Вернуться" Clicked="OnBackButtonClicked" />
         </HorizontalStackLayout>
 
     </VerticalStackLayout>

@@ -16,6 +16,8 @@ namespace lab2
                 case "slime": return new Slime();
                 case "guard": return new Guard();
                 case "miniboss1": return new MiniBoss1();
+                case "miniboss2": return new MiniBoss2();
+                case "miniboss3": return new MiniBoss3();
                 case "finalboss": return new FinalBoss();
                 default: throw new ArgumentException("Unknown enemy type");
             }

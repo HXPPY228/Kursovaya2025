@@ -1,4 +1,5 @@
 using lab2;
+using lab3;
 using System.Windows.Input;
 
 namespace ui;
@@ -33,6 +34,8 @@ public partial class FightPage : ContentPage
 
     private async void OnAttack()
     {
+        b1.IsEnabled = false;
+        b2.IsEnabled = false;
         // простой обмен ударами
         while (Player.FullHP > 0 && Enemy.HP > 0)
         {
@@ -62,9 +65,11 @@ public partial class FightPage : ContentPage
 
     private async Task ShowResultAndExit()
     {
+        b1.IsEnabled = true;
+        b2.IsEnabled = true;
         if (Player.FullHP <= 0)
         {
-            bool load = await DisplayAlert("Поражение", "Вы погибли. Загрузить последнее сохранение?", "Да", "Нет");
+            bool load = await DisplayAlert("Поражение", "Вы погибли. Загрузить сохранение?", "Да", "Нет");
             if (load)
             {
                 GameState.Reset();
@@ -88,9 +93,18 @@ public partial class FightPage : ContentPage
         if (GameState.IsStoryBattle)
         {
             GameState.StoryProgress.NextStory(GameState.Player);
+            if (GameState.StoryProgress.CompletedEnemies == 2)
+            {
+                string xmlPath = Path.Combine(AppContext.BaseDirectory, "ShopItemZ.xml");
+                GameState.Shop.AddShopItems(ShopItemLoader.LoadItemsFromXml(xmlPath));
+            }
             GameState.IsStoryBattle = false;
         }
 
         await Shell.Current.GoToAsync("GamePage");
+    }
+    private void OnBackButtonClicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync(nameof(GamePage));
     }
 }
